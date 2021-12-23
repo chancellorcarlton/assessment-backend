@@ -35,29 +35,23 @@ app.get("/api/fortune", (req, res) => {
   let randomFortune = fortunes[randomIndex];
 
   res.status(200).send(randomFortune);
+
 });
 
-app.get("/api/greeting", (req, res) => {
-  const greetings = ["Hey", 
-          "Hi",
-          "Hello",
-          "Howdy",
-  ];
 
-  //choose random greeting
-  let randomIndex = Math.floor(Math.random() * greetings.length);
-  let randomGreeting = greetings[randomIndex];
+app.delete("/api/goal", (req, res) => {
+  const targetId = +req.params.id;
 
-  res.status(200).send(randomGreeting);
-});
+        const foundIndex = goal.findIndex(goal => {
+            return goal.id === targetId
+        })
 
-// app.post("/api/goal", (req, res) {
-//   document.getElementById("goal1") = "Be great."
-//   document.getElementById("goal2") = "Do great things."
-//   document.getElementById("goal3") = "Never give up."
-  
-//   res.status(200).send(allGoals);
-// });
+        goal.splice(foundIndex, 1);
+
+        res.status(200).send(goals);
+    }),
+
+
 
 
 
