@@ -8,6 +8,17 @@ app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.
 
+const user = [
+  { name: 'Chance', age: 26 },
+  { name: 'Bob', age: 25 },
+  { name: 'Sue', age: 29 }
+];
+
+app.post('/api/users', (req, res) => {
+  console.log(req.body);
+  res.status(201).send('Created User')
+})
+
 app.get("/api/compliment", (req, res) => {
   const compliments = ["Gee, you're a smart cookie!",
 					 "Cool shirt!",
@@ -39,16 +50,16 @@ app.get("/api/fortune", (req, res) => {
 });
 
 
-app.delete("/api/goal", (req, res) => {
+app.delete("/api/fortune/:fortune", (req, res) => {
   const targetId = +req.params.id;
 
-        const foundIndex = goal.findIndex(goal => {
-            return goal.id === targetId
+        const foundIndex = fortune.findIndex(goal => {
+            return fortune.id === targetId
         })
 
-        goal.splice(foundIndex, 1);
+        fortune.splice(foundIndex, 1);
 
-        res.status(200).send(goals);
+        res.status(200).send(fortune);
     }),
 
 
